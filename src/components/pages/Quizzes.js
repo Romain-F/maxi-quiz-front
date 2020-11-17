@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import Liste from '../Liste';
+import List from '../List';
 class Quizzes extends Component {
     render() {
         return <div>
-           <Liste></Liste>
+           <List 
+                listContent="quizzes"
+                onClick={() => {}}
+           />
         </div>
     }
 }

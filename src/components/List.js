@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import API from '../api';
+import ListElement from './ListElement';
 
-class Liste extends Component {
+class List extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -11,14 +13,12 @@ class Liste extends Component {
     }
 
     componentDidMount(){
-        fetch("http://127.0.0.1:3333/quizzes")
-            .then(res => res.json())
+        API.get(this.props.content)
             .then(
-                (result) => {
-                    console.log(result)
+                (res) => {
                     this.setState({
                         isLoaded: true,
-                        items: result
+                        items: res.data,
                     });
                     
                 },
@@ -43,13 +43,17 @@ class Liste extends Component {
                 <ul>
                     {items.map(item => (
                         <li key={item.name}>
-                            {item.name} {item.price}
+                            <ListElement
+                                listContent={this.props.listContent}
+                                listItem={item}
+                            />
                         </li>
                     ))}
+                    <li><p>+</p></li>
                 </ul>
             );
         }
     }
 }
 
-export default Liste;
+export default List;
