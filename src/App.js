@@ -1,16 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Game from './components/pages/Game';
 import Quizzes from './components/pages/Quizzes';
 import About from './components/pages/About';
+import Quiz from './components/pages/Quiz';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <div>
+    <BrowserRouter>
+      <div className="App">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <ul className="navbar-nav mr-auto">
               <li><Link to={'/'} className="nav-link"> Home </Link></li>
@@ -25,10 +25,10 @@ function App() {
             <Route path='/game' component={Game} />
             <Route path='/quizzes' component={Quizzes} />
             <Route path='/about' component={About} />
-          </Switch>
-        </div>
-      </Router>
-    </div>
+            <Route path={`/quiz/:quizId`} component={Quiz} />
+          </Switch>       
+     </div> 
+    </BrowserRouter>
   );
 }
 
