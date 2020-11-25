@@ -1,17 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import QuizListElement from './QuizListElement';
 
-class ListElement extends Component {
 
-    static LIST_ELEMENT_TYPE_QUIZ = 'QUIZ';
-    
-    render() {
-        const content = this.props.listContent;
-        if (content === ListElement.LIST_TYPE_QUIZ) {
-            return <QuizListElement item={this.props.listItem}/>; 
+ListElement.LIST_ELEMENT_TYPE_QUIZ = 'QUIZ';
+
+function ListElement(props) {
+    const content = props.contentType;
+
+     const renderListElement = () => { if (content === ListElement.LIST_ELEMENT_TYPE_QUIZ) {
+            return <QuizListElement item={props.listItem}/>; 
         } 
-        return <div />;
+        return <p>La liste n'a pas de type de contenu défini</p>;
     }
+
+    return (
+        renderListElement()
+    );
 }
 
 export { ListElement };

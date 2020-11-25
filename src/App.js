@@ -23,9 +23,10 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/game' component={Game} />
+            <Route path={`/quizzes/:quizId`} component={Quiz} />
             <Route path='/quizzes' component={Quizzes} />
             <Route path='/about' component={About} />
-            <Route path={`/quiz/:quizId`} component={Quiz} />
+            
           </Switch>       
      </div> 
     </BrowserRouter>

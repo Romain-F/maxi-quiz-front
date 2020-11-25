@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import API from '../api';
-import ListElement from './ListElement';
+import { api } from '../api';
+import {ListElement} from './ListElement';
 
 class List extends Component {
     constructor(props){
@@ -13,7 +13,7 @@ class List extends Component {
     }
 
     componentDidMount(){
-        API.get(this.props.content)
+        api.get(this.props.apiUrl)
             .then(
                 (res) => {
                     this.setState({
@@ -41,15 +41,16 @@ class List extends Component {
         } else {
             return (
                 <ul>
-                    {items.map(item => (
-                        <li key={item.name}>
+                    <li><p>+</p></li>
+                    { items.map(item => (
+                        <li key={item.id}>
                             <ListElement
-                                listContent={this.props.listContent}
+                                contentType={this.props.contentType}
                                 listItem={item}
                             />
                         </li>
-                    ))}
-                    <li><p>+</p></li>
+                    )) }
+                    
                 </ul>
             );
         }
