@@ -7,7 +7,8 @@ ListElement.LIST_ELEMENT_TYPE_QUIZ = 'QUIZ';
 function ListElement(props) {
     const content = props.contentType;
 
-     const renderListElement = () => { if (content === ListElement.LIST_ELEMENT_TYPE_QUIZ) {
+     const renderListElement = () => { 
+         if (content === ListElement.LIST_ELEMENT_TYPE_QUIZ) {
             return <QuizListElement item={props.listItem}/>; 
         } 
         return <p>La liste n'a pas de type de contenu défini</p>;

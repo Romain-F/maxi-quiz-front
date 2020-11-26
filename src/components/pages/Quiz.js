@@ -1,32 +1,72 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import { api } from '../../api';
+import Switch from '@material-ui/core/Switch';
+import { withStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 
 function Quiz(data) {
+    const [quiz, setQuiz] = useState(null)
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [error, setError] = useState(null)
+    const [editMode, setEditMode] = useState(false)
+    const { quizId } = useParams();
+    
+    useEffect(() => {
+        
+        api.get(`/quizzes/${quizId}`)
+            .then(
+                (res) => {
+                    setIsLoaded(true);
+                    setQuiz(res.data);
+                },
+                // (error) => {
+                //     this.setState({
+                //         isLoaded: true,
+                //         error
+                //     });
+                // }
+            )
+            .catch( (error) => {
+                setIsLoaded(true);
+                setError(error);
+            })
+    }, [])
 
-   
-        const { quizId } = useParams();
-        //const quiz = data.find(q => q.id === Number(quizId));
-        let quizData;
-        //console.log(quiz);
-        //if (true) {
-        //    quizData = (
-        //        <div>
-        //            <h3> {quiz.name} </h3>
-        //            <p>{quiz.id}</p>
-        //            <hr />
-        //            <h4>{quiz.name + quiz.name}</h4>
-        //        </div>
-        //    );
-        //} else {
-        //    quizData = <h2> Sorry. Quiz doesn't exist </h2>;
-        //}
+    const MySwitch = withStyles({
+        switchBase: {
+            color: green[300],
+            '&$checked': {
+                color: green[500],
+            },
+            '&$checked + $track': {
+                backgroundColor: green[500],
+            },
+        },
+        checked: {},
+        track: {},
+    })(Switch);
 
+    const handleChange = (event) => {
+        setEditMode(event.target.checked)
+    };
+
+    console.log(editMode);
+    if (error) {
+        return <div>Erreur : {error.message}</div>;
+    } else if (!isLoaded) {
+        return <div>Chargement...</div>;
+    } else if (quiz) {
         return (
             <div>
-                <div>coucou</div>
+                <MySwitch checked={editMode} onChange={handleChange} name="editModeSwitch"/>
+                <p>{quiz.name}</p>
             </div>
+            
         );
+    } else {
+       return <p>404</p>
+    }
 };
 
 export default Quiz;
