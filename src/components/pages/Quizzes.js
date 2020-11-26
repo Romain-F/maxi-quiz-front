@@ -9,6 +9,7 @@ class Quizzes extends Component {
             <List 
                 apiUrl="quizzes"
                 contentType={ListElement.LIST_ELEMENT_TYPE_QUIZ}
+                linkToCreate="/quizzes_new"
             />
         )
     }

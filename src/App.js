@@ -6,6 +6,7 @@ import Game from './components/pages/Game';
 import Quizzes from './components/pages/Quizzes';
 import About from './components/pages/About';
 import Quiz from './components/pages/Quiz';
+import CreateQuiz from './components/pages/CreateQuiz';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
             <Route path={`/quizzes/:quizId`} component={Quiz} />
             <Route path='/quizzes' component={Quizzes} />
             <Route path='/about' component={About} />
-            
+            <Route path='/quizzes_new' component={CreateQuiz} />
           </Switch>       
      </div> 
     </BrowserRouter>

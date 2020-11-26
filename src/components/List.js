@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { api } from '../api';
 import {ListElement} from './ListElement';
+import { Link } from 'react-router-dom';
 
 class List extends Component {
     constructor(props){
@@ -41,7 +42,7 @@ class List extends Component {
         } else {
             return (
                 <ul>
-                    <li><p>+</p></li>
+                    <Link to={this.props.linkToCreate}> <li>+</li> </Link>
                     { items.map(item => (
                         <li key={item.id}>
                             <ListElement
