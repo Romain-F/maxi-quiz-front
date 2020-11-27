@@ -60,9 +60,8 @@ function Quiz(data) {
         return (
             <div>
                 <MySwitch checked={editMode} onChange={handleChange} name="editModeSwitch"/>
-                <p>{quiz.name}</p>
+                <p>{quiz.quiz_name}</p>
             </div>
-            
         );
     } else {
        return <p>404</p>

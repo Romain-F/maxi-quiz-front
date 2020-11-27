@@ -3,6 +3,7 @@ import QuizListElement from './QuizListElement';
 
 
 ListElement.LIST_ELEMENT_TYPE_QUIZ = 'QUIZ';
+ListElement.LIST_ELEMENT_TYPE_QESTION = 'QUESTION';
 
 function ListElement(props) {
     const content = props.contentType;

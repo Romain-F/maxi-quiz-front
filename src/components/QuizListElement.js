@@ -12,8 +12,8 @@ class QuizListElement extends Component {
         return (
             <Link to={`/quizzes/${this.props.item.id}`}>
                 <div>
-                    <h2>{this.props.item.name}</h2>
-                    <p>{this.props.item.themes[0].name}</p>
+                    <h2>{this.props.item.quiz_name}</h2>
+                    <p>{this.props.item.theme_name}</p>
                     <p><b>*</b></p>
                     <p>Thomas</p>
                 </div>
