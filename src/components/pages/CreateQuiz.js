@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import { api } from '../../api';
+import { MyModal } from '../MyModal';
 
 const TextInput = ({ label, ...props }) => {
     // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
@@ -37,7 +38,6 @@ function CreateQuiz() {
     const [themes, setThemes] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
     const [error, setError] = useState(null)
-
 
     useEffect(() => {
 
@@ -108,6 +108,12 @@ function CreateQuiz() {
                     type="text"
                 />
                 {loadedSelect()}
+
+                <MyModal
+                    text='Ajouter un thème'
+                    content={MyModal.Modal_Content_CreateTheme}
+                />
+
                 <button type="submit">Valider</button>
             </Form>
         </Formik>
