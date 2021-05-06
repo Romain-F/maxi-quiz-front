@@ -74,22 +74,20 @@ function MyModal(props) {
 
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
-                {props.text}
-            </button>
+            
             <Modal
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"
                 className={classes.modal}
-                open={open}
-                onClose={handleClose}
+                open={props.open}
+                onClose={props.handleClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
                     timeout: 500,
                 }}
             >
-                <Fade in={open}>
+                <Fade in={props.open}>
                     <div className={classes.paper}>
                         {renderModal()}
                     </div>

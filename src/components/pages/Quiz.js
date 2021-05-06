@@ -59,8 +59,9 @@ function Quiz(data) {
     } else if (quiz) {
         return (
             <div>
+            {console.log(quiz)}
                 <MySwitch checked={editMode} onChange={handleChange} name="editModeSwitch"/>
-                <p>{quiz.quiz_name}</p>
+                <p>{quiz[0].quiz_name}</p>
             </div>
         );
     } else {

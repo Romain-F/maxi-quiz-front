@@ -34,6 +34,7 @@ function CreateTheme() {
                 const theme = {
                     name: values.name,
                 };
+                console.log(theme);
                 api.post('/themes', theme)
                     .then(res => {
                         console.log(res);
@@ -44,7 +45,7 @@ function CreateTheme() {
         >
             <Form>
                 <TextInput
-                    label="Nom du thème"
+                    label="Nom du thï¿½me"
                     name="name"
                     type="text"
                 />
