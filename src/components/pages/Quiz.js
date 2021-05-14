@@ -12,28 +12,24 @@ function Quiz(data) {
     const [editMode, setEditMode] = useState(false)
     const { quizId } = useParams();
     
+    //Hook d'effet pour récupérer les données de la bd via un appel d'api (axios)
+    //Est appelé après maj du DOM
     useEffect(() => {
         
         api.get(`/quizzes/${quizId}`)
             .then(
-                (res) => {
-                    setIsLoaded(true);
+                (res) => {           
                     setQuiz(res.data);
+                    setIsLoaded(true);
                 },
-                // (error) => {
-                //     this.setState({
-                //         isLoaded: true,
-                //         error
-                //     });
-                // }
             )
             .catch( (error) => {
                 setIsLoaded(true);
                 setError(error);
             })
-    }, [])
+    }, [quizId])
 
-    const MySwitch = withStyles({
+    const EditSwitch = withStyles({
         switchBase: {
             color: green[300],
             '&$checked': {
@@ -52,16 +48,17 @@ function Quiz(data) {
     };
 
     console.log(editMode);
+
+    //RETURN AFFICHAGE
     if (error) {
         return <div>Erreur : {error.message}</div>;
     } else if (!isLoaded) {
         return <div>Chargement...</div>;
     } else if (quiz) {
         return (
-            <div>
-            {console.log(quiz)}
-                <MySwitch checked={editMode} onChange={handleChange} name="editModeSwitch"/>
+            <div>                
                 <p>{quiz[0].quiz_name}</p>
+                <EditSwitch checked={editMode} onChange={handleChange} name="editModeSwitch" />
             </div>
         );
     } else {

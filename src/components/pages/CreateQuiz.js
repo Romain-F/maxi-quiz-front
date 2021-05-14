@@ -194,7 +194,7 @@ function CreateQuiz() {
             >
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <CreateTheme />
+                        <CreateTheme handler={handleClose}/>
                     </div>
                 </Fade>
             </Modal>
